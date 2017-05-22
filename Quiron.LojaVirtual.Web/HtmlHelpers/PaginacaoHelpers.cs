@@ -14,15 +14,15 @@ namespace Quiron.LojaVirtual.Web.HtmlHelpers
         {
             StringBuilder resultado = new StringBuilder();
 
-            for (int i = 1; i < paginação.TotalPagina; i++)
+            for (int i = 1; i <= paginação.TotalPagina; i++)
             {
-                TagBuilder tag = new TagBuilder("a");tag.MergeAttribute("href", paginaUrl(i));
+                TagBuilder tag = new TagBuilder("a");
                 tag.MergeAttribute("href", paginaUrl(i));
                 tag.InnerHtml = i.ToString();
 
                 if (i == paginação.PaginaAtual)
                 {
-                    tag.AddCssClass("select");
+                    tag.AddCssClass("selected");
                     tag.AddCssClass("btn-primary");
                 }
                 tag.AddCssClass("btn btn-default");

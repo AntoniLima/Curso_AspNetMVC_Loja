@@ -1,49 +1,13 @@
-﻿@model IEnumerable<Quiron.LojaVirtual.Dominio.Entidade.Produto>
+﻿@using Quiron.LojaVirtual.Web.HtmlHelpers
+@model Quiron.LojaVirtual.Web.Models.ProdutosViewModel
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ListaProdutos</title>
-</head>
-<body>
-    @Html.ActionLink("Create New", "Create")
+@foreach(var p in Model.Produtos)
+{
     <div>
-        <table>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(Model => Model.Nome)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(Model => Model.Descricao)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(Model => Model.Preco)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(Model => Model.Categoria)
-                </th>
-                <th></th>
-            </tr>
-            @foreach(var item in Model)
-            {
-                <tr>
-                    <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Descricao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Preco)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Categoria)
-                    </td>
-                </tr>
-            }
-        </table> 
+        <h3>@p.Nome</h3>
+        @p.Descricao
+        <h3>@p.Preco.ToString("c")</h3>
     </div>
-</body>
-</html>
+}
+
+@Html.PageLinks(Model.Paginacao, x => Url.Action("ListaProdutos", new {pagina = x}))
